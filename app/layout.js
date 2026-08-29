@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Ilẹ̀ — Find and list land across Nigeria',
-  description: 'Buy and sell land and property across Nigeria with clear, seller-declared documentation.',
+  title: 'TrustLand Nigeria | Verified Land & Property Listings Nationwide',
+  description: "Nigeria's document-first property marketplace. Browse verified land, homes and commercial listings by state — see exactly what paperwork every seller has before you pay a kobo.",
 };
 
 export default function RootLayout({ children }) {
