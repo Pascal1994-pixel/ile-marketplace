@@ -17,7 +17,7 @@ export default function Login(){
 
   return (
     <div style={{maxWidth:420, margin:'80px auto', padding:'0 22px'}}>
-      <h1 style={{fontSize:'1.6rem', marginBottom:10}}>Sign in to Ilẹ̀</h1>
+      <h1 style={{fontSize:'1.6rem', marginBottom:10}}>Sign in to TrustLand Nigeria</h1>
       <p style={{color:'var(--ink-soft)', fontSize:'0.92rem', marginBottom:20}}>
         No password needed — we'll email you a one-time link.
       </p>
