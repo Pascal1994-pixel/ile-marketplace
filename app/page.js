@@ -85,7 +85,7 @@ export default function Home(){
 
       <section style={{
         position:'relative', minHeight:440, display:'flex', alignItems:'flex-end',
-        background:`linear-gradient(180deg, rgba(14,20,10,0.25), rgba(10,16,8,0.88)), url(${TYPE_PHOTOS.Land}) center/cover`,
+        background:`linear-gradient(180deg, rgba(14,20,10,0.25), rgba(10,16,8,0.88)), url(https://images.unsplash.com/photo-1761935554215-e6dc9940550d?fm=jpg&q=90&w=2400&auto=format&fit=crop) center/cover`,
       }}>
         <div style={{maxWidth:1180, margin:'0 auto', padding:'60px 22px 42px', width:'100%'}}>
           <div className="reveal" style={{fontSize:'0.75rem', textTransform:'uppercase', letterSpacing:'0.14em', color:'var(--brass)', fontWeight:700, marginBottom:12}}>Live listings, real accounts</div>
