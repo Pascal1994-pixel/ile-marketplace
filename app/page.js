@@ -70,8 +70,8 @@ export default function Home(){
               <path d="M27 12l2 2 4-4" stroke="#14180F" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             <div>
-              <div style={{fontFamily:'Fraunces,serif', fontWeight:700, fontSize:'1.2rem', color:'var(--forest-dark)'}}>Ilẹ̀</div>
-              <div style={{fontSize:'0.62rem', letterSpacing:'0.08em', textTransform:'uppercase', color:'var(--ink-faint)', marginTop:-2}}>Land &amp; property, state by state</div>
+              <div style={{fontFamily:'Fraunces,serif', fontWeight:700, fontSize:'1.2rem', color:'var(--forest-dark)'}}>TrustLand</div>
+              <div style={{fontSize:'0.62rem', letterSpacing:'0.08em', textTransform:'uppercase', color:'var(--ink-faint)', marginTop:-2}}> Nigeria · Land &amp; property, state by state</div>
             </div>
           </div>
           {session ? (
