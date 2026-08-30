@@ -8,12 +8,14 @@ const STATES = ["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa","Benue
 "Kwara","Lagos","Nasarawa","Niger","Ogun","Ondo","Osun","Oyo","Plateau","Rivers","Sokoto","Taraba","Yobe","Zamfara"];
 
 const STATUS_LABEL = { declared:"Docs declared", pending:"Pending review", confirmed:"Confirmed", none:"No docs declared" };
-const CATEGORIES = [
-  { label:"Land", seed:"najaland-cat-land" },
-  { label:"House", seed:"najaland-cat-house" },
-  { label:"Apartment", seed:"najaland-cat-apt" },
-  { label:"Commercial", seed:"najaland-cat-comm" },
-];
+
+const TYPE_PHOTOS = {
+  Land: "https://images.unsplash.com/photo-1747854805840-9be7d5e360e6?fm=jpg&q=80&w=900&auto=format&fit=crop",
+  House: "https://images.unsplash.com/photo-1787672358142-95e697dacd81?fm=jpg&q=80&w=900&auto=format&fit=crop",
+  Apartment: "https://images.unsplash.com/photo-1768638687896-35bde623d532?fm=jpg&q=80&w=900&auto=format&fit=crop",
+  Commercial: "https://images.unsplash.com/photo-1778961419928-2968ddd57c05?fm=jpg&q=80&w=900&auto=format&fit=crop",
+};
+const CATEGORIES = ["Land","House","Apartment","Commercial"];
 
 function statusOf(l){
   if (l.status === 'confirmed') return 'confirmed';
@@ -22,7 +24,6 @@ function statusOf(l){
   return 'none';
 }
 function fmtNaira(n){ return '₦' + Number(n).toLocaleString('en-NG'); }
-function placeholderImg(seed, w=700, h=500){ return `https://picsum.photos/seed/${encodeURIComponent(seed)}/${w}/${h}`; }
 
 export default function Home(){
   const [listings, setListings] = useState([]);
@@ -71,7 +72,7 @@ export default function Home(){
             </svg>
             <div>
               <div style={{fontFamily:'Fraunces,serif', fontWeight:700, fontSize:'1.2rem', color:'var(--forest-dark)'}}>TrustLand</div>
-              <div style={{fontSize:'0.62rem', letterSpacing:'0.08em', textTransform:'uppercase', color:'var(--ink-faint)', marginTop:-2}}> Nigeria · Land &amp; property, state by state</div>
+              <div style={{fontSize:'0.62rem', letterSpacing:'0.08em', textTransform:'uppercase', color:'var(--ink-faint)', marginTop:-2}}>Nigeria · Land &amp; property, state by state</div>
             </div>
           </div>
           {session ? (
@@ -84,7 +85,7 @@ export default function Home(){
 
       <section style={{
         position:'relative', minHeight:440, display:'flex', alignItems:'flex-end',
-        background:`linear-gradient(180deg, rgba(14,20,10,0.25), rgba(10,16,8,0.88)), url(${placeholderImg('najaland-hero-main',1600,900)}) center/cover`,
+        background:`linear-gradient(180deg, rgba(14,20,10,0.25), rgba(10,16,8,0.88)), url(${TYPE_PHOTOS.Land}) center/cover`,
       }}>
         <div style={{maxWidth:1180, margin:'0 auto', padding:'60px 22px 42px', width:'100%'}}>
           <div className="reveal" style={{fontSize:'0.75rem', textTransform:'uppercase', letterSpacing:'0.14em', color:'var(--brass)', fontWeight:700, marginBottom:12}}>Live listings, real accounts</div>
@@ -112,19 +113,19 @@ export default function Home(){
       <section style={{maxWidth:1180, margin:'0 auto', padding:'30px 22px 6px'}}>
         <div style={{display:'flex', gap:16, overflowX:'auto', paddingBottom:6}}>
           {CATEGORIES.map(c=>(
-            <button key={c.label} onClick={()=>setType(type===c.label ? '' : c.label)}
+            <button key={c} onClick={()=>setType(type===c ? '' : c)}
               style={{
                 flexShrink:0, display:'flex', flexDirection:'column', alignItems:'center', gap:8, width:96,
-                opacity: (!type || type===c.label) ? 1 : 0.45, transition:'opacity .15s ease'
+                opacity: (!type || type===c) ? 1 : 0.45, transition:'opacity .15s ease'
               }}>
               <div style={{
                 width:72, height:72, borderRadius:'50%', overflow:'hidden',
-                border: type===c.label ? '3px solid var(--forest)' : '3px solid var(--line)',
+                border: type===c ? '3px solid var(--forest)' : '3px solid var(--line)',
                 boxShadow:'var(--shadow-sm)'
               }}>
-                <img src={placeholderImg(c.seed,200,200)} alt={c.label} style={{width:'100%', height:'100%', objectFit:'cover'}}/>
+                <img src={TYPE_PHOTOS[c]} alt={c} style={{width:'100%', height:'100%', objectFit:'cover'}}/>
               </div>
-              <span style={{fontSize:'0.8rem', fontWeight:600, color:'var(--ink-soft)'}}>{c.label}</span>
+              <span style={{fontSize:'0.8rem', fontWeight:600, color:'var(--ink-soft)'}}>{c}</span>
             </button>
           ))}
         </div>
@@ -151,7 +152,7 @@ export default function Home(){
               confirmed:{bg:'var(--forest-tint)', fg:'var(--forest-dark)'},
               none:{bg:'var(--rust-tint)', fg:'var(--rust)'}
             }[st];
-            const img = l.images?.[0] || placeholderImg(l.id || `listing-${i}`, 700, 500);
+            const img = l.images?.[0] || TYPE_PHOTOS[l.type] || TYPE_PHOTOS.Land;
             return (
               <div key={l.id} className="reveal" style={{animationDelay:`${Math.min(i,8)*0.05}s`, background:'var(--surface)', borderRadius:'var(--r-lg)', overflow:'hidden', boxShadow:'var(--shadow-md)', transition:'transform .15s ease, box-shadow .15s ease'}}>
                 <div style={{ height:190, position:'relative', background:`url(${img}) center/cover` }}>
